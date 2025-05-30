@@ -12,11 +12,11 @@ Developed with ❤️ by **Thamoon Kedkaew CeJ**
 -
 Open a dockable window inside QGIS  
 Click anywhere on the map to open the corresponding Google Street View  
-Automatically transform coordinates to WGS84 (EPSG:4326)  
+Support coordinates to WGS84 (EPSG:4326)  
 Lightweight, simple, and fast
 ---
 ### Requirements
-- QGIS 3.x  or move
+- QGIS 3.4  or move
 - Python 3.x  ormove
 - Qt WebEngine (included in QGIS)  
 - A valid Google Maps API key
@@ -55,11 +55,10 @@ Developed by:
 ### คุณสมบัติ
 เปิดหน้าต่างฝังใน QGIS  
 คลิกที่ใดก็ได้บนแผนที่เพื่อดู Google Street View ของจุดนั้น  
-แปลงพิกัดอัตโนมัติเป็น WGS84 (EPSG:4326)  
-เบา ใช้งานง่าย เร็ว
+โปรดตั้งค่าพิกัด CRS เป็น WGS84 (EPSG:4326)  
 ---
 ### ความต้องการระบบ
-- QGIS 3.x  
+- QGIS 3.4  
 - Python 3.x  
 - Qt WebEngine (รวมมาใน QGIS)  
 - Google Maps API key ที่ใช้งานได้
