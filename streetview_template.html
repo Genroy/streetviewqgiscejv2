@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Street View</title>
+    <style> html, body, #street-view { height: 100%; margin: 0; padding: 0; } </style>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={api_key}"></script>
+    <script>
+      let channel;
+      let streetView;
+      let lastLat = {lat}, lastLng = {lon};
+
+      function init() {
+        const sv = new google.maps.StreetViewService();
+        const panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('street-view'), {
+            position: {lat: {lat}, lng: {lon}},
+            pov: {heading: {heading}, pitch: 0},
+            zoom: 1
+        });
+
+        streetView = panorama;
+
+        panorama.addListener('position_changed', () => {
+          const pos = panorama.getPosition();
+          if (pos && (pos.lat() !== lastLat || pos.lng() !== lastLng)) {
+            lastLat = pos.lat();
+            lastLng = pos.lng();
+            if (window.channelObject) {
+              window.channelObject.updatePosition(lastLat, lastLng);
+            }
+          }
+        });
+      }
+
+      new QWebChannel(qt.webChannelTransport, function(channelInstance) {
+        channel = channelInstance;
+        window.channelObject = channel.objects.bridge;
+        init();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="street-view"></div>
+  </body>
+</html>
